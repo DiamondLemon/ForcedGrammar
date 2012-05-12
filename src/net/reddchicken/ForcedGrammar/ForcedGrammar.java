@@ -42,6 +42,7 @@ public class ForcedGrammar extends JavaPlugin implements Listener {
 		String newMessage = "";
 		
 		// Statistics code (unused)
+		@SuppressWarnings("unused")
 		int numCorrections = 0;
 		
 		
@@ -119,7 +120,6 @@ public class ForcedGrammar extends JavaPlugin implements Listener {
 		boolean punctuated = false;
 		for (String ending : endings) {
 			if (lastChar.equals(ending)) {
-				getLogger().info("Yes");
 				punctuated = true;
 			} 
 		}
