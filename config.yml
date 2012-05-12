@@ -1,0 +1,21 @@
+# Spelling configuration file
+# Correct spellings are indented with TWO SPACES. Not tabs.
+
+i:
+  I
+cant:
+  can't
+dont:
+  don't
+wont:
+  won't
+im:
+  I'm
+wasnt:
+  wasn't
+doesnt:
+  doesn't
+isnt:
+  isn't
+thats:
+  that's
