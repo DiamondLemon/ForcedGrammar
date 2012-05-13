@@ -100,11 +100,15 @@ public class ForcedGrammar extends JavaPlugin implements Listener {
 		String[] sentences = newMessage.split("(?<=[!?\\.])\\s");
 		String tempMessage = "";
 		for (String sentence : sentences) {
-			String firstChar = Character.toString(sentence.charAt(0));
-			firstChar = firstChar.toUpperCase();
-			sentence = sentence.substring(1);
-			sentence = firstChar + sentence;
-			tempMessage = tempMessage + sentence + " ";
+			
+			// We don't want to capitalise links.
+			if (!isLink(sentence)) {
+				String firstChar = Character.toString(sentence.charAt(0));
+				firstChar = firstChar.toUpperCase();
+				sentence = sentence.substring(1);
+				sentence = firstChar + sentence;
+			}
+				tempMessage = tempMessage + sentence + " ";
 		}
 		
 		newMessage = tempMessage.trim();
@@ -124,7 +128,10 @@ public class ForcedGrammar extends JavaPlugin implements Listener {
 			} 
 		}
 		
-		if (!punctuated) {
+		// We don't want to full stop a link.
+		String lastWord = words.get(words.size() -1);
+		
+		if (!punctuated && !isLink(lastWord)) {
 			newMessage += ".";
 			numCorrections++;
 		}
@@ -133,6 +140,18 @@ public class ForcedGrammar extends JavaPlugin implements Listener {
 		//\/\/\/\/\/ Set final message. \/\/\/\/\/\\
 		
 		event.setMessage(newMessage);
+	}
+	
+	
+	//\/\/\/\/\/ Link Checking \/\/\/\/\/\\
+	
+	// A method for finding links
+	
+	public boolean isLink(String word) {
+		if (word.startsWith("http")) {
+			return true;
+		}
+		return false;
 	}
 	
 }
