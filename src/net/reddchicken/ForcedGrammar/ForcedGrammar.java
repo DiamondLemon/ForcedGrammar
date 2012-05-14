@@ -131,7 +131,7 @@ public class ForcedGrammar extends JavaPlugin implements Listener {
 		// We don't want to full stop a link.
 		String lastWord = words.get(words.size() -1);
 		
-		if (!punctuated && !isLink(lastWord)) {
+		if (!punctuated && !isLink(lastWord) && !isNumber(lastWord)) {
 			newMessage += ".";
 			numCorrections++;
 		}
@@ -143,12 +143,21 @@ public class ForcedGrammar extends JavaPlugin implements Listener {
 	}
 	
 	
-	//\/\/\/\/\/ Link Checking \/\/\/\/\/\\
+	//\/\/\/\/\/ Special Case Checks \/\/\/\/\/\\
+	
+	// Various methods for finding patterns.
 	
 	// A method for finding links
-	
 	public boolean isLink(String word) {
 		if (word.startsWith("http")) {
+			return true;
+		}
+		return false;
+	}
+	
+	// A method for finding numbers.
+	public boolean isNumber(String word) {
+		if (word.matches("[0-9\\.]+")) {
 			return true;
 		}
 		return false;
