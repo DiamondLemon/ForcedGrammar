@@ -9,7 +9,6 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import org.bukkit.event.EventHandler;
@@ -63,7 +62,7 @@ public class ForcedGrammar extends JavaPlugin implements Listener {
 		List<String> words = Arrays.asList(originalMessage.split("\\s"));
 		
 		// Get spellings from the configuration file.
-		Map<String, String> dictionary = new HashMap<String, String>();
+		HashMap<String, String> dictionary = new HashMap<String, String>();
 		Set<String> keys = getConfig().getKeys(false);
 		
 		for (String key : keys) {
